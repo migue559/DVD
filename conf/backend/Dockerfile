@@ -1,22 +1,30 @@
-FROM python:3.8-alpine
+FROM python:3.8-slim-buster
 
-RUN set -ex \
-    && apk add --no-cache \
-      build-base \
-      postgresql-dev \
-      su-exec \
-    && python -m venv /venv \
-    && source /venv/bin/activate \
-    && pip install -U pip setuptools
+RUN apt-get update \
+  # dependencies for building Python packages
+  && apt-get install -y build-essential \
+  # psycopg2 dependencies
+  && apt-get install -y libpq-dev \
+  # Translations dependencies
+  && apt-get install -y gettext \
+  # app folder
+  && mkdir -p /backend \
+  # pyhive utilities
+  &&  apt-get install gcc\
+  &&  apt-get install sasl2-bin libsasl2-2 libsasl2-dev libsasl2-modules\
+  # cleaning up unused files
+  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+  && rm -rf /var/lib/apt/lists/*
 
-COPY code/backend/requirements.txt /code/backend/
+COPY dvd/backend/requirements.txt /dvd/backend/
+RUN pip install -r /dvd/backend/requirements.txt
 
-RUN set -ex \
-    && source /venv/bin/activate \
-    && pip install --no-binary psycopg2 -r /code/backend/requirements.txt
+COPY ./conf/backend/scripts/run.sh /run.sh
+RUN sed -i 's/\r$//g' /run.sh
+RUN chmod +x /run.sh
 
 ENV \
     PYTHONUNBUFFERED=1 \
     PYTHONIOENCODING=UTF-8
 
-WORKDIR /code/backend
+WORKDIR /dvd/backend
