@@ -33,10 +33,13 @@ services:
       - ./.env/.quassar/.env
     volumes:
       - ./dvd:/dvd
-      #- ./conf/frontend/scripts:/scripts
+      - ./conf/frontend/scripts:/scripts
       - quassar:/home/user
+    ports:
+      - "8002:8002"
     init: true
-    #command: ['/scripts/run.sh']
+    command: ['/scripts/run.sh']
+    #command: npm run dev
 
   nginx:
     image: nginx:1.19-alpine
@@ -49,7 +52,7 @@ services:
       - ./conf/nginx/nginx.conf.template:/etc/nginx/nginx.conf.template
       - ./conf/nginx/run.sh:/run.sh
     ports:
-      - '8000:8000'
+      - '8009:8009'
     #command: ['/run.sh']
 
 volumes:
