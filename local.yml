@@ -25,16 +25,16 @@ services:
     #init: true
     command: ['/run.sh']    
 
-  quassar:
+  quasar:
     build:
       context: .
       dockerfile: ./conf/frontend/Dockerfile
     env_file:
-      - ./.env/.quassar/.env
+      - ./.env/.quasar/.env
     volumes:
       - ./dvd:/dvd
       - ./conf/frontend/scripts:/scripts
-      - quassar:/home/user
+      - quasar:/home/user
     ports:
       - "8002:8002"
     init: true
@@ -47,15 +47,15 @@ services:
       - ./.env/.nginx/.env
     depends_on:
       - django
-      - quassar
+      - quasar
     volumes:
       - ./conf/nginx/nginx.conf.template:/etc/nginx/nginx.conf.template
       - ./conf/nginx/run.sh:/run.sh
     ports:
-      - '8009:8009'
-    #command: ['/run.sh']
+      - "8009:8009"      
+    command: ['/run.sh']
 
 volumes:
   postgres:
   django:
-  quassar:
+  quasar:

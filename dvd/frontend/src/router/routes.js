@@ -1,6 +1,5 @@
-import { RouteConfig } from 'vue-router'
 
-const routes: RouteConfig[] = [
+const routes = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
@@ -12,7 +11,7 @@ const routes: RouteConfig[] = [
   // Always leave this as last one,
   // but you can also remove it
   {
-    path: '*',
+    path: '/:catchAll(.*)*',
     component: () => import('pages/Error404.vue')
   }
 ]
