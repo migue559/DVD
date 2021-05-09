@@ -1,16 +1,14 @@
 from django.apps import AppConfig
+from django.conf import settings
 
-print("settings")
-print(settings)
 
 class CoreConfig(AppConfig):
-    name = "hac.core"
+    name = "dvd.core"
     verbose_name = ("CORE")
     def ready(self):
-        import hac.core.signals
+        import dvd.core.signals
         try:
-            from .models import User
-            from django.conf import settings
+            from .models import User        
             def createFirstUser():
                 if not User.objects.all().first():
                     user = User.objects.create(

@@ -18,3 +18,6 @@ class ModelBase(models.Model):
         type_, id_ = base64.b64decode(id).decode('utf-8').split(':')
         return self.__class__.objects.get(id=id_)
 
+print("ModelBase")
+
+print("ModelBase_x")

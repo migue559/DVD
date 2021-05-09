@@ -26,6 +26,8 @@ SECRET_KEY = '=5a0sm!19qt8x=d-nk099=&8yw6j6xk1l9xhmaoy_m-n%!#uan'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+USERNAME = env.str("USERNAME", 'admin')
+PASSWORD = env.str("PASSWORD", 'admin')
 
 ALLOWED_HOSTS = []
 #ALLOWED_HOSTS = ['*']
@@ -58,10 +60,18 @@ THIRD_PARTY_APPS = [
     "mptt",
 ]
 LOCAL_APPS = [
-    #"hac.core.apps.CoreConfig",
+    "dvd.core.apps.CoreConfig",
     #"hac.hac.apps.HacConfig",
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "graphql_jwt.backends.JSONWebTokenBackend",
+)
+
+AUTH_USER_MODEL = "core.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
