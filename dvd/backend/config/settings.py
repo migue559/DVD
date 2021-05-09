@@ -17,8 +17,6 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 APPS_DIR = BASE_DIR / "dvd"
-print("environ")
-print(environ)
 env = environ.Env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -150,8 +148,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-print("APPS_DIR >>>>>>>>>>>>>>>>>>")
-print(APPS_DIR)
 STATIC_ROOT = str(APPS_DIR / "static/static")
 STATIC_URL = '/static/'
 
