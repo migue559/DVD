@@ -141,8 +141,17 @@ GRAPHENE = {
 }
 ASGI_APPLICATION = 'config.routing.application'
 #WSGI_APPLICATION = "django_subscriptions.wsgi.application"
+CHANNEL_LAYERS = {    
+   "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": ['redis://redis:6379/0',],
+        },
+    },
+}
 
-
+print("CHANNEL_LAYERS")
+print(CHANNEL_LAYERS)
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True

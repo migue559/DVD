@@ -15,6 +15,7 @@ class Mutation(
     pass
 
 class Subscription(        
+        dvd.core.schema.Subscription,    
         graphene.ObjectType
     ):
     pass
@@ -22,6 +23,6 @@ class Subscription(
 schema = graphene.Schema(
     query=Query
     ,mutation=Mutation
-    #,subscription=Subscription
+    ,subscription=Subscription
 )
 

@@ -14,6 +14,7 @@ services:
       dockerfile: ./conf/backend/Dockerfile
     depends_on:
       - postgres
+      - redis
     env_file:
       - ./.env/.django/.env
       - ./.env/.postgres/.env    
@@ -54,6 +55,10 @@ services:
     ports:
       - "8009:8009"      
     command: ['/run.sh']
+  
+  redis:
+    image: redis:5.0
+    container_name: redis
 
 volumes:
   postgres:
