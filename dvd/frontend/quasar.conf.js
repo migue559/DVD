@@ -49,12 +49,20 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
+            env: {
+              APOLLOHTTP: process.env.APOLLOHTTP,
+      //        APOLLOWS: process.env.APOLLOWS,
+              DEBUG: process.env.DEBUG
+            },
       extendWebpack (cfg, { isServer, isClient }) {
         cfg.resolve.alias = {
           ...cfg.resolve.alias, // This adds the existing alias
           // Add your own alias like this
           '@': path.resolve(__dirname, './src'),
+          '@store': path.resolve(__dirname, './src/store'),
           '@pages': path.resolve(__dirname, './src/pages'),
+          '@endpoints': path.resolve(__dirname, './src/boot/endpoints'),
+          '@boot': path.resolve(__dirname, './src/boot')
         }
 
         cfg.module.rules.push({

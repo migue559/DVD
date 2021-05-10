@@ -103,10 +103,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -117,11 +115,8 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -138,14 +133,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
-
 GRAPHENE = {
     'SCHEMA': 'config.schema.schema',
     'MIDDLEWARE': [
         'graphql_jwt.middleware.JSONWebTokenMiddleware',
     ],
 }
-
 ASGI_APPLICATION = 'config.routing.application'
 #WSGI_APPLICATION = "django_subscriptions.wsgi.application"
 
