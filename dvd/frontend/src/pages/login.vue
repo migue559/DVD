@@ -31,7 +31,7 @@ export default defineComponent({
     const store = useStore()
     const router = useRouter()
     const user = reactive({
-      name:"admin",
+      username:"admin",
       password :"admin",
     })
     const login = (user) => {

@@ -51,7 +51,7 @@ module.exports = configure(function (ctx) {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
             env: {
               APOLLOHTTP: process.env.APOLLOHTTP,
-      //        APOLLOWS: process.env.APOLLOWS,
+              APOLLOWS: process.env.APOLLOWS,
               DEBUG: process.env.DEBUG
             },
       extendWebpack (cfg, { isServer, isClient }) {

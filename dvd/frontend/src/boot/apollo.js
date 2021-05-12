@@ -6,14 +6,8 @@ import { setContext } from 'apollo-link-context'
 import JwtService from '@boot/jwt.service'
 
 
-console.log("process")
-console.log(process)
-console.log(process.env)
-console.log(">>>",process.env.APOLLOHTTP)
-//console.log(">>>>",process.env.APOLLOWS)
-
 const GRAPHQL_URL = process.env.APOLLOHTTP
-//const GRAPHQLWS_URL = process.env.APOLLOWS
+const GRAPHQLWS_URL = process.env.APOLLOWS
 
 const getHeaders = () => {
   const headers = {
@@ -34,16 +28,17 @@ const headerLink = setContext(() => {
 const httpLink = createHttpLink({
   uri: GRAPHQL_URL,
   fetch,
-  headers: getHeaders()
+  headers: getHeaders(),
+
 })
 
-//const wsLink = new WebSocketLink({
-  //uri: GRAPHQLWS_URL,
-  //headers: getHeaders(),
-  //options: {
-    //reconnect: true
-  //}
-//})
+const wsLink = new WebSocketLink({
+  uri: GRAPHQLWS_URL,
+  headers: getHeaders(),
+  options: {
+    reconnect: true
+  }
+})
 
 const link = split(
   ({ query }) => {
@@ -51,14 +46,15 @@ const link = split(
     return definition.kind === 'OperationDefinition' &&
       definition.operation === 'subscription'
   },
-  //wsLink,
+  wsLink,
   httpLink
 )
 
 const apolloClient = new ApolloClient({
   link: headerLink.concat(link),
   cache: new InMemoryCache(),
-  connectToDevTools: true
+  connectToDevTools: true,
+
 })
 
 const apollo = apolloClient

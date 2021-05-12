@@ -1,6 +1,7 @@
 import gql from 'graphql-tag'
 
 export const tokenAuth = (credentials) => {
+
   return gql`
     mutation {
       tokenAuth (
