@@ -1,9 +1,11 @@
 import graphene
 import dvd.core.schema
+import dvd.hac.schema
 
 
 class Query(
         dvd.core.schema.Query,
+        dvd.hac.schema.Query,
         graphene.ObjectType,
     ):
     pass
@@ -16,6 +18,7 @@ class Mutation(
 
 class Subscription(        
         dvd.core.schema.Subscription,    
+        dvd.hac.schema.Subscription,    
         graphene.ObjectType
     ):
     pass

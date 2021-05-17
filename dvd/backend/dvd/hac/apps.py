@@ -1,16 +1,12 @@
 from dvd.core.apps import *
 from django.conf import settings
 
-
-print("settings.DEBUG")
-print(settings.DEBUG)
-
 class HacConfig(AppConfig):
     name = "dvd.hac"
     verbose_name = ("Catalogos")
     def ready(self):
         import dvd.hac.signals
-        if 1==1:#try:
+        try:
             if settings.DEBUG:
                 from .models import HiveCatalogue
                 from dvd.core.models import User
@@ -41,6 +37,6 @@ class HacConfig(AppConfig):
                             lastModifier = User.objects.all().first()
                         )
                         hiveCatalogue.administrators.add(User.objects.all().first())
-        #except:
-        #    pass
+        except:
+            pass
 

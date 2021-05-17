@@ -1,11 +1,9 @@
 
 export const getToken = () => {
-  console.log("mirame")
   return window.localStorage.getItem('authToken')
 }
 
 export const saveToken = (token) => {
-  console.log("mirame 2")
   window.localStorage.setItem('authToken', token)
 }
 
