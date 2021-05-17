@@ -61,7 +61,7 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     "dvd.core.apps.CoreConfig",
-    #"hac.hac.apps.HacConfig",
+    "dvd.hac.apps.HacConfig",
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -163,6 +163,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_ROOT = str(APPS_DIR / "static/static")
 STATIC_URL = '/static/'
-
-
 ADMIN_URL = "admin/"
+
+HIVE_HOST = env.str("HIVE_HOST",'10.100.6.82')
+HIVE_PORT = env.int("HIVE_PORT",10500)
+HIVE_DATABASE = env.str("HIVE_DATABASE",'en_master_data')
+HIVE_USERNAME = env.str("HIVE_USERNAME",'apli_master_data')
+HIVE_PASSWORD = env.str("HIVE_PASSWORD",'7f9mWkus')
