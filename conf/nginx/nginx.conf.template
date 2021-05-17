@@ -47,8 +47,12 @@ http {
             proxy_pass http://quasar:8002;
         }
 
-        location ~ /(api|admin|static/admin) {
+        location ~ /(api|graphql|admin|static/admin) {
             proxy_pass http://django:8001;
         }
+        
+        location ~ ^/(static)/(.*)$ {
+			alias /$1/$2;
+		}
     }
 }

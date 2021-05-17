@@ -50,6 +50,8 @@ services:
       - django
       - quasar
     volumes:
+      - ./dvd/backend/dvd/static/static/:/static/
+      #- ./backend/hac/static/media/:/media/
       - ./conf/nginx/nginx.conf.template:/etc/nginx/nginx.conf.template
       - ./conf/nginx/run.sh:/run.sh
     ports:

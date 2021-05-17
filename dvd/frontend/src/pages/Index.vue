@@ -1,6 +1,7 @@
 <template lang="pug">
 q-page.flex.flex-center
-  HiveCatalogue
+  | index
+  //HiveCatalogue
 </template>
 
 <script>
