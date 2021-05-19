@@ -7,10 +7,13 @@ q-card.my-card.bg-blue-grey-2(flat='', bordered='')
   q-card-section
     .row.items-center.no-wrap
       .col
-        .text-subtitle2 {{ hiveCatalogue.hiveCatalogueID.description }}
-      q-separator(dark='' vertical='')
-      q-btn(stretch='' flat='' :label='hiveCatalogue.hiveCatalogueID.views' size='sm' icon='preview')
-      q-btn(stretch='' flat='' :label='hiveCatalogue.hiveCatalogueID.downloads' size='sm' icon='file_download')
+        .text-subtitle1 {{ hiveCatalogue.hiveCatalogueID.description }}
+  q-toolbar.q-my-md.shadow-2
+    q-space
+    q-separator(dark='' vertical='')
+    q-btn(stretch='' flat='' :label='hiveCatalogue.hiveCatalogueID.downloads' size='sm' icon='file_download')
+    q-separator(dark='' vertical='')
+    q-btn(stretch='' flat='' :label='hiveCatalogue.hiveCatalogueID.views' size='sm' icon='preview')
 
 
 </template>
@@ -30,7 +33,6 @@ function hiveCatalogues (id) {
       .query({
         query: singleHiveTableQuery(id.value)
       }).then(({ data }) => {
-        console.log(data)
         hiveCatalogue.hiveCatalogueID = data.hiveCatalogueID
       }).catch((error) => {
         console.error('HiveCatalogue, makeQuery:', error)
@@ -75,7 +77,7 @@ export default defineComponent({
     }
   },
   setup(props) {
-    console.log("llega",props)
+
     return {
       ...hiveCatalogues(toRef(props,'id'))
 

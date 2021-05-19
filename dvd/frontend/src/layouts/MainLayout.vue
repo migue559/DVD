@@ -4,10 +4,7 @@ q-layout(view='hHr LpR ffr')
     q-toolbar
       q-toolbar-title
         | Herramienta administración de catalogos
-      q-btn(v-if='!login', dense='', flat='', round='', icon='menu', @click='right = !right')
-      q-btn(v-else='login', dense='', flat='', round='', icon='ti-user', @click='right = !right')
-        q-drawer(show-if-above='', v-model='right', side='right', bordered='')
-          q.h2 content
+      q-btn(v-if='!isAuthenticated' to='/auth/login' label='Identificarse' icon-right='login' dense flat)
 
   q-page-container
     router-view
@@ -15,17 +12,21 @@ q-layout(view='hHr LpR ffr')
 </template>
 
 <script>
+import { computed, reactive } from 'vue'
 import { defineComponent, ref } from 'vue'
+import { useStore } from 'vuex'
 export default defineComponent({
   name: 'MainLayout',
   components: {
   },
   setup () {
-    const right = ref(false);
-    const login = ref(false);
+
+    const store = useStore()
+    const isAuthenticated = computed(() => store.state.auth.isAuthenticated)
+
     return {
-      right,
-      login,
+
+      isAuthenticated
     }
   }
 })

@@ -1,11 +1,12 @@
 import gql from 'graphql-tag'
 
-//export const cataloguesHiveQuery = (key) => {
-export const cataloguesHiveQuery = () => {
+export const cataloguesHiveQuery = (key) => {
+  const nameIcontains = key ? `name_Icontains:"${key}"` : ''
   return gql`
   query{
     hiveCatalogueQuery(
       first:100
+      ${nameIcontains}
     ) {
       edges {
         node {
@@ -25,7 +26,7 @@ export const cataloguesHiveQuery = () => {
 }
 
 export const singleHiveTableQuery = (id) => {
-  console.log(`este es un id: ${id}`)
+
   return gql`
   query{
     hiveCatalogueID( id:"${id}")

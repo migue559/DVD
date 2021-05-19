@@ -13,14 +13,16 @@ const getHeaders = () => {
   const headers = {
     authorization: ''
   }
-  headers.authorization = `JWT ${JwtService.getToken()}`
+  headers.authorization = JwtService.getToken() ? `JWT ${JwtService.getToken()}` : ''
+  //headers.authorization = `JWT ${JwtService.getToken()}`
   return headers
 }
 
 const headerLink = setContext(() => {
   return {
     headers: {
-      authorization: `JWT ${JwtService.getToken()}`
+      //authorization: `JWT ${JwtService.getToken()}`
+      authorization: JwtService.getToken() ? `JWT ${JwtService.getToken()}` : ''
     }
   }
 })
