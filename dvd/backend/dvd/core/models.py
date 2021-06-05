@@ -1,7 +1,8 @@
 
 from django.contrib.auth.models import AbstractUser
-#from django.conf import settings
+from django.conf import settings
 from .modelsBase import *
+from pyhive import hive
 
 class User(AbstractUser, ModelBase):
     pass

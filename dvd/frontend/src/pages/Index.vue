@@ -8,8 +8,9 @@ q-page.q-pa-md
           //q-input( v-model='search.key' @update:model-value='makeSearch' debounce='500' autofocus counter='' maxlength='150')
           //@update realiza evento makesearch 500 milisegundos despues de haber escrito algo en el form text
           q-input( v-model="search.key" ,@keyup.enter="makeSearch", maxlength='110')
-            q-btn( icon="search", @click="makeSearch")
+            q-btn( icon="ti-search", @click="makeSearch")
           // esta una version diferente de hacer la busqueda con botton y con enter en el input text
+          // v model guarda el valor y lo asigna akey y el evento se ejecuta de dos maneras se manda a ejecutar la funcion makesearch por pulsar el boton y hacer clik enter
 
 
     .col-4
@@ -22,6 +23,7 @@ q-page.q-pa-md
       HiveCatalogue.cursor-pointer(
         v-bind:="result"
         v-bind:flat="flat"
+        @click="openTable(result.id)"
       )
 </template>
 
@@ -29,10 +31,12 @@ q-page.q-pa-md
 import HiveCatalogue from '../components/hac/catalogues'
 import { defineComponent, toRef, reactive } from 'vue';
 import { apollo } from '@boot/apollo';
+import { useRouter } from 'vue-router'
 import { cataloguesHiveQuery} from '@endpoints/hac.endpoints'
 
 //function hiveCatalogues (id) {
 function hiveCatalogues () {
+  const router = useRouter()
   const flat = true
   const search = reactive({
     results:[],
@@ -40,7 +44,6 @@ function hiveCatalogues () {
     key:''
   })
   const makeSearch = () => {
-    console.log("id",search.key)
     apollo
       .query({
         query: cataloguesHiveQuery(search.key)
@@ -53,9 +56,15 @@ function hiveCatalogues () {
         console.error('cataloguesHiveQuery error, makeQuery:', error)
       })
   }
+  const openTable = (id) => {
+    console.log(`estoy entrando a una nueva pagina, ${id}`)
+    router.push({ name: 'Table' , params: { id }})
+  }
+
   makeSearch()
+
   return {
-     search, flat, makeSearch
+     search, flat, makeSearch, openTable
   }
 }
 export default defineComponent({

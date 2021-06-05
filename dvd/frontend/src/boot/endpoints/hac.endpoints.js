@@ -26,7 +26,6 @@ export const cataloguesHiveQuery = (key) => {
 }
 
 export const singleHiveTableQuery = (id) => {
-
   return gql`
   query{
     hiveCatalogueID( id:"${id}")
@@ -38,6 +37,24 @@ export const singleHiveTableQuery = (id) => {
       isPublic
 
     }
+  }
+  `
+}
+
+
+export const getHiveSchemaIDQuery = (id) => {
+  return gql`
+  query{
+    hiveSchemaID( id:"${id}")
+  }
+  `
+}
+
+export const getHiveGetDataIDQuery = (id) =>{
+  return gql`
+  query{
+    hiveGetDataID( id:"${id}")
+
   }
   `
 }

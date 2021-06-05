@@ -1,6 +1,7 @@
 from django.contrib.auth.models import Group
 from django.db.models import Q
 from dvd.core.models import *
+from django.conf import settings
 from django.core.serializers.json import DjangoJSONEncoder
 import json
 

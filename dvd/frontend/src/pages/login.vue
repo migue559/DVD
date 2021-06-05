@@ -3,7 +3,7 @@ q-page.window-height.window-width.row.justify-center.items-center(style='backgro
   q-card.shadow-24(square='', style='width:300px;height:485px;')
     q-card-section
       q-form.q-px-sm.q-pt-xl
-        q-input(square='', clearable='', v-model='user.name', label='User')
+        q-input(square='', clearable='', v-model='user.username', label='User')
           template(v-slot:prepend='')
             q-icon(name='ti-user')
         q-input(square='', clearable='', v-model='user.password', type='password', label='Password')
@@ -11,10 +11,8 @@ q-page.window-height.window-width.row.justify-center.items-center(style='backgro
             q-icon(name='ti-lock')
     q-card-actions.q-px-lg
       q-btn.fit.text-white( size='md', color='info', label='Entrar' @click='login(user)')
-
-
-    //q-card-section.text-center.q-pa-sm
-      //p.text-grey-6 Forgot your password?
+    q-card-section.text-center.q-pa-sm
+      p.text-grey-6 Forgot your password?
 
 </template>
 
@@ -37,9 +35,10 @@ export default defineComponent({
     const login = (user) => {
 
       if(user){
+        console.log(user)
         store.dispatch('login', user)
         .then((data) => {
-          if (data.token) router.push({ name: 'Home' })
+          if (data.token) router.push({ name: 'Index' })
         })
         //router.push({ name: 'Home' })
       }else{

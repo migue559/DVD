@@ -3,7 +3,7 @@ q-card.my-card.bg-blue-grey-2(flat='', bordered='')
   q-toolbar.bg-blue-grey-6.text-white
     .text-h6 {{ hiveCatalogue.hiveCatalogueID.name }}
     q-space
-    q-btn(flat='' round='' dense='' size='sm' :icon='hiveCatalogue.hiveCatalogueID.isPublic ? "public" : "lock"')
+    q-btn(flat='' round='' dense='' size='sm' :icon='hiveCatalogue.hiveCatalogueID.isPublic ? "ti-star" : "ti-lock"')
   q-card-section
     .row.items-center.no-wrap
       .col
@@ -11,9 +11,9 @@ q-card.my-card.bg-blue-grey-2(flat='', bordered='')
   q-toolbar.q-my-md.shadow-2
     q-space
     q-separator(dark='' vertical='')
-    q-btn(stretch='' flat='' :label='hiveCatalogue.hiveCatalogueID.downloads' size='sm' icon='file_download')
+    q-btn(stretch='' flat='' :label='hiveCatalogue.hiveCatalogueID.downloads' size='sm' icon='ti-download')
     q-separator(dark='' vertical='')
-    q-btn(stretch='' flat='' :label='hiveCatalogue.hiveCatalogueID.views' size='sm' icon='preview')
+    q-btn(stretch='' flat='' :label='hiveCatalogue.hiveCatalogueID.views' size='sm' icon='ti-eye')
 
 
 </template>
